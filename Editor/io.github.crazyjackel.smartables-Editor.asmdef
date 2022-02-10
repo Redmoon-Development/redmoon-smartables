@@ -1,0 +1,16 @@
+{
+    "name": "io.github.crazyjackel.smartables-Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:1973fc5c0fbef5241916babaa4d35a5e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
