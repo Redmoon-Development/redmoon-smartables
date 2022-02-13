@@ -1,0 +1,18 @@
+{
+  "author": {
+    "name": "Jackson Levitt",
+    "email": "jackel1020@protonmail.com"
+  },
+  "description": "Smarter Injectable Versions of Common Fixed Patterns",
+  "displayName": "Red Moon Smartables",
+  "name": "io.crazyjackel.redmoon-smartables",
+  "unity": "2020.3",
+  "version": "1.0.0",
+  "samples": [
+    {
+      "displayName": "Enum Demo",
+      "description": "Shows a Basic Script for a Smart Enum",
+      "path": "Samples/SampleEnum"
+    }
+  ]
+}
