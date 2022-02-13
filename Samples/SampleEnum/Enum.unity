@@ -260,8 +260,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage:
-    _name: Ice
-    _value: 2
+    _name: Fire
+    _value: 1
+  damages:
+  - _name: Regular
+    _value: 0
+  - _name: Regular
+    _value: 0
 --- !u!1 &1605582592
 GameObject:
   m_ObjectHideFlags: 0
