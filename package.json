@@ -7,7 +7,10 @@
   "displayName": "Red Moon Smartables",
   "name": "io.crazyjackel.redmoon-smartables",
   "unity": "2020.3",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "gitDependencies": {
+    "com.bewildered.core": "https://github.com/MechWarrior99/Bewildered-Core.git"
+  },
   "samples": [
     {
       "displayName": "Enum Demo",

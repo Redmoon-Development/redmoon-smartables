@@ -7,20 +7,23 @@ using UnityEditor;
 using UnityEngine;
 using System.Linq;
 
-    public class Arrow : MonoBehaviour
+public class Arrow : MonoBehaviour
+{
+    [SerializeField]
+    public DamageType damage = DamageType.Fire.Copy();
+
+    [SerializeField]
+    public List<DamageType> damages = new List<DamageType>();
+
+    public void Start()
     {
-        [SerializeField]
-        public DamageType damage = DamageType.Fire.Copy();
-
-        public void Start()
-        {
-            Debug.Log(JsonUtility.ToJson(this));
-            Debug.Log(damage.ToString());
-            Debug.Log(DamageType.SmartEnums.Select(x => x.ToString()).Aggregate((x, y) => x + " " + y));
-        }
-
-        private void Update()
-        {
-            Debug.Log(damage.ToString());
-        }
+        Debug.Log(JsonUtility.ToJson(this));
+        Debug.Log(damage.ToString());
+        Debug.Log(DamageType.SmartEnums.Select(x => x.ToString()).Aggregate((x, y) => x + " " + y));
     }
+
+    private void Update()
+    {
+        Debug.Log(damage.ToString());
+    }
+}

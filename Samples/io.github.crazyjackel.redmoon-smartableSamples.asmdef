@@ -1,9 +1,8 @@
 {
-    "name": "io.github.crazyjackel.smartables-Editor",
+    "name": "io.github.crazyjackel.smartable-Samples",
     "rootNamespace": "",
     "references": [
-        "GUID:1973fc5c0fbef5241916babaa4d35a5e",
-        "GUID:2790683054c70884ab522c43e9b07874"
+        "GUID:1973fc5c0fbef5241916babaa4d35a5e"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
