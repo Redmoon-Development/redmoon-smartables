@@ -20,6 +20,7 @@ public class Arrow : MonoBehaviour
         Debug.Log(JsonUtility.ToJson(this));
         Debug.Log(damage.ToString());
         Debug.Log(DamageType.SmartEnums.Select(x => x.ToString()).Aggregate((x, y) => x + " " + y));
+        Debug.Log(damages.FirstOrDefault() == damage);
     }
 
     private void Update()

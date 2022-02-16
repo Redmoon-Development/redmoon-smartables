@@ -78,6 +78,16 @@ namespace RedMoon.Smartables
             if (other is null) return false;
             return _value.Equals(other._value);
         }
+
+        public static bool operator ==(SmartEnum<TEnum, TValue> lhs, SmartEnum<TEnum, TValue> rhs)
+        {
+            return lhs.Equals(rhs);
+        }
+        public static bool operator !=(SmartEnum<TEnum, TValue> lhs, SmartEnum<TEnum, TValue> rhs)
+        {
+            return !lhs.Equals(rhs);
+        }
+
         public override string ToString()
         {
             return Name;
