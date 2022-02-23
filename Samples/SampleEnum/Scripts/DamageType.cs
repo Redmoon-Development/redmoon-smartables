@@ -12,6 +12,16 @@ public class DamageType : SmartEnum<DamageType>
     public static readonly DamageType Ice = new DamageType(nameof(Ice), 2);
     public static readonly DamageType Water = new DamageType(nameof(Water), 3);
 
-    public DamageType() { }
-    private DamageType(string name, int value) : base(name, value) { }
+    private int strLength;
+    public int StrLength => strLength;
+
+    public DamageType() {}
+    private DamageType(string name, int value) : base(name, value) 
+    {
+        strLength = name.Length;
+    }
+    public override void Copy(DamageType other)
+    {
+        this.strLength = other.strLength;
+    }
 }

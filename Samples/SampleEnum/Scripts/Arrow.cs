@@ -10,7 +10,7 @@ using System.Linq;
 public class Arrow : MonoBehaviour
 {
     [SerializeField]
-    public DamageType damage = DamageType.Fire.Copy();
+    public DamageType damage;
 
     [SerializeField]
     public List<DamageType> damages = new List<DamageType>();
@@ -21,6 +21,7 @@ public class Arrow : MonoBehaviour
         Debug.Log(damage.ToString());
         Debug.Log(DamageType.SmartEnums.Select(x => x.ToString()).Aggregate((x, y) => x + " " + y));
         Debug.Log(damages.FirstOrDefault() == damage);
+        Debug.Log(damage.StrLength);
     }
 
     private void Update()

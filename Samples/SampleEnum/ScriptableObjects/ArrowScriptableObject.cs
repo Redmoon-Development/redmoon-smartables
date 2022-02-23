@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "RedMoon/Samples/ArrowScriptableObject")]
 public class ArrowScriptableObject : ScriptableObject
 {
-    public DamageType damage = DamageType.Water.Copy();
+    public DamageType damage;
 }

@@ -10,6 +10,7 @@ using System.Threading;
 
 namespace RedMoon.Smartables
 {
+
     [Serializable]
     public abstract class SmartEnum : IEquatable<SmartEnum>
     {
@@ -18,15 +19,13 @@ namespace RedMoon.Smartables
         {
             return @enum.GetValues();
         }
-
+        protected abstract List<SmartEnum> GetValues();
+#endif
         public bool Equals(SmartEnum other)
         {
-            return GetEqual(other);
+            return IsEqual(other);
         }
-
-        protected abstract List<SmartEnum> GetValues();
-        protected abstract bool GetEqual(SmartEnum other);
-#endif
+        protected abstract bool IsEqual(SmartEnum other);
     }
 
     [Serializable]
@@ -40,17 +39,18 @@ namespace RedMoon.Smartables
     public abstract class SmartEnum<TEnum, TValue> :
             SmartEnum,
             IEquatable<SmartEnum<TEnum, TValue>>,
-            IComparable<SmartEnum<TEnum, TValue>>
+            IComparable<SmartEnum<TEnum, TValue>>,
+            ISerializationCallbackReceiver
             where TEnum : SmartEnum<TEnum, TValue>, new()
             where TValue : IEquatable<TValue>, IComparable<TValue>
     {
-        private static List<SmartEnum<TEnum, TValue>> _smartEnums = new List<SmartEnum<TEnum, TValue>>();
-        public static List<SmartEnum<TEnum, TValue>> SmartEnums => _smartEnums;
+        private static readonly Dictionary<TValue, SmartEnum<TEnum, TValue>> _smartEnums = new Dictionary<TValue, SmartEnum<TEnum, TValue>>();
+        public static List<SmartEnum<TEnum, TValue>> SmartEnums => _smartEnums.Values.ToList();
 
         [SerializeField]
-        protected string _name;
+        private string _name;
         [SerializeField]
-        protected TValue _value;
+        private TValue _value;
         public string Name => _name;
         public TValue Value => _value;
 
@@ -59,26 +59,30 @@ namespace RedMoon.Smartables
         {
             _name = name;
             _value = value;
-            _smartEnums.Add(this);
-        }
-        public TEnum Copy()
-        {
-            return new TEnum
-            {
-                _value = _value,
-                _name = _name
-            };
+            _smartEnums.Add(value, this);
         }
 
         public virtual int CompareTo(SmartEnum<TEnum, TValue> other) => _value.CompareTo(other._value);
-
+        protected override bool IsEqual(SmartEnum other)
+        {
+            if (other is SmartEnum<TEnum, TValue> other2) return Equals(other2);
+            return false;
+        }
         public bool Equals(SmartEnum<TEnum, TValue> other)
         {
             if (System.Object.ReferenceEquals(this, other)) return true;
             if (other is null) return false;
             return _value.Equals(other._value);
         }
-
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+       
         public static bool operator ==(SmartEnum<TEnum, TValue> lhs, SmartEnum<TEnum, TValue> rhs)
         {
             return lhs.Equals(rhs);
@@ -88,6 +92,21 @@ namespace RedMoon.Smartables
             return !lhs.Equals(rhs);
         }
 
+        /// <summary>
+        /// After Deserialization, load in variables from a proxy
+        /// </summary>
+        /// <param name="other"></param>
+        public abstract void Copy(TEnum source);
+        public virtual void OnBeforeSerialize() { }
+        public void OnAfterDeserialize()
+        {
+            if (_smartEnums.ContainsKey(Value))
+            {
+                var copy = _smartEnums[Value];
+                this._name = copy.Name;
+                Copy((TEnum)copy);
+            }
+        }
         public override string ToString()
         {
             return Name;
@@ -105,11 +124,6 @@ namespace RedMoon.Smartables
                 .OrderBy(t => t.Value)
                 .Cast<SmartEnum>()
                 .ToList();
-        }
-        protected override bool GetEqual(SmartEnum other)
-        {
-            if (other is SmartEnum<TEnum, TValue> other2) return Equals(other2);
-            return false;
         }
 #endif
     }
