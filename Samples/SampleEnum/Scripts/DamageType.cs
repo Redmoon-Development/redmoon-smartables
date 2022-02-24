@@ -15,13 +15,12 @@ public class DamageType : SmartEnum<DamageType>
     private int strLength;
     public int StrLength => strLength;
 
-    public DamageType() {}
-    private DamageType(string name, int value) : base(name, value) 
+    private DamageType(string name, int value) : base(name, value)
     {
         strLength = name.Length;
     }
-    public override void Copy(DamageType other)
+    protected override void ConstructEnum(DamageType @enum)
     {
-        this.strLength = other.strLength;
+        strLength = @enum.strLength;
     }
 }

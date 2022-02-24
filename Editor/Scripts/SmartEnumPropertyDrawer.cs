@@ -24,7 +24,7 @@ namespace RedMoon.Smartables
             var smartEnum = property.GetValue<SmartEnum>();
 
             //Get All Other Possible Values
-            var enumList = SmartEnum.GetValues(smartEnum);
+            var enumList = smartEnum.GetValues();
 
             //Get Current Index
             var i = enumList.IndexOf(enumList.FirstOrDefault(x => x.Equals(smartEnum)));

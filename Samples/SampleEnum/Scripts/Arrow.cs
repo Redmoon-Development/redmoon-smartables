@@ -11,6 +11,8 @@ public class Arrow : MonoBehaviour
 {
     [SerializeField]
     public DamageType damage;
+    [SerializeField]
+    public DamageType damage2 = (DamageType)DamageType.Fire.Clone();
 
     [SerializeField]
     public List<DamageType> damages = new List<DamageType>();
@@ -19,8 +21,9 @@ public class Arrow : MonoBehaviour
     {
         Debug.Log(JsonUtility.ToJson(this));
         Debug.Log(damage.ToString());
-        Debug.Log(DamageType.SmartEnums.Select(x => x.ToString()).Aggregate((x, y) => x + " " + y));
+        Debug.Log(DamageType.Values().Select(x => x.ToString()).Aggregate((x, y) => x + " " + y));
         Debug.Log(damages.FirstOrDefault() == damage);
+        Debug.Log(damage == damage2);
         Debug.Log(damage.StrLength);
     }
 
