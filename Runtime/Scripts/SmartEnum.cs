@@ -62,6 +62,7 @@ namespace RedMoon.Smartables
         protected SmartEnum(TValue value)
         {
             _value = value;
+            _smartEnums.Add(value, (TEnum)this);
             Construct(_value);
         }
        
@@ -156,7 +157,6 @@ namespace RedMoon.Smartables
             }
             else
             {
-                _smartEnums.Add(value, (TEnum)this);
                 Construct(this);
             }
         }
