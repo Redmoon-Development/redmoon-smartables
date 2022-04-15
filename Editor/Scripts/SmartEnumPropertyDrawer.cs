@@ -4,13 +4,13 @@ using UnityEngine;
 using System.Linq;
 using System.Reflection;
 using System;
+using RedMoon.Smartables;
 using Bewildered.Editor;
+using UnityEditor;
+using UnityEditorInternal;
 
-namespace RedMoon.Smartables
+namespace RedMoon.Smartables.Editor
 {
-#if UNITY_EDITOR
-    using UnityEditor;
-    using UnityEditorInternal;
 
     [CustomPropertyDrawer(typeof(SmartEnum), true)]
     public class SmartEnumPropertyDrawer : PropertyDrawer
@@ -43,5 +43,4 @@ namespace RedMoon.Smartables
             EditorGUI.EndProperty();
         }
     }
-#endif
 }

@@ -7,7 +7,7 @@
   "displayName": "Red Moon Smartables",
   "name": "io.crazyjackel.redmoon-smartables",
   "unity": "2020.3",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "gitDependencies": {
     "com.bewildered.core": "https://github.com/MechWarrior99/Bewildered-Core.git"
   },
